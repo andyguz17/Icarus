@@ -44,6 +44,7 @@ const common: Configuration = {
 
   devServer: {
     static: path.join(__dirname, 'dist'),
+    historyApiFallback: true,
     compress: true,
     open: true,
     port: 4000
