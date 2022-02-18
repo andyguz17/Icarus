@@ -1,12 +1,10 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Image from './assets/laptop.jpg';
+ReactDOM.render(
+  <React.StrictMode>
+    <div>{process.env.NODE_ENV} s</div>
+  </React.StrictMode>,
 
-const App = () => (
-  <React.Fragment>
-    <img src={Image} alt="" />
-  </React.Fragment>
+  document.getElementById('root')
 );
-
-ReactDOM.render(<App />, document.getElementById('root'));
