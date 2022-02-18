@@ -1,11 +1,15 @@
 import path from 'path';
-
 import HtmlWebPackPlugin from 'html-webpack-plugin';
 
-const config = {
-  entry: './src/index.tsx',
+import { Configuration as WebpackConfiguration } from 'webpack';
+import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
 
-  mode: process.env.NODE_ENV || 'development',
+interface Configuration extends WebpackConfiguration {
+  devServer?: WebpackDevServerConfiguration;
+}
+
+const common: Configuration = {
+  entry: './src/index.tsx',
 
   module: {
     rules: [
@@ -38,15 +42,16 @@ const config = {
     extensions: ['.tsx', '.ts', '.js']
   },
 
-  output: {
-    path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js'
-  },
-
   devServer: {
     static: path.join(__dirname, 'dist'),
     compress: true,
+    open: true,
     port: 4000
+  },
+
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: 'bundle.js'
   },
 
   plugins: [
@@ -57,4 +62,4 @@ const config = {
   ]
 };
 
-export default config;
+export default common;
